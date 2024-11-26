@@ -1,0 +1,165 @@
+ 
+
+String, StringBuilder and StringBuffer 
+
+- In the OtherProjects project, create a new package hust.soict.globalict.garbage for ICT or hust.soict.dsai.garbage for DS-AI. We work with this package in this exercise. 
+
+- Create a new class ConcatenationInLoops to test the processing time to construct String using + operator, StringBuffer and StringBuilder.  
+
+ 
+
+Figure 22. ConcatenationInLoops 
+
+For more information on String concatenation, please refer https://redfin.engineering/java-string-concatenation-which-way-is-best-8f590a7d22a8. 
+
+- Create a new class GarbageCreator. Create “garbage” as much as possible and observe when you run a program (it should let the program hangs or even stop working when too much “garbage”). Write another class NoGarbage to solve the problem. 
+
+Some suggestions: 
+
+- Read a text/binary file to a String without using StringBuffer to concatenate String (only use + operator). Observe and capture your screen when you choose a very long file 
+
+- Improve the code using StringBuffer.  
+
+The following piece of code is a suggestion for your implementation 
+
+ 
+
+Figure 23. Sample code for GarbageCreator 
+
+Change the code in line 14-17 above to use StringBuffer instead of “+” operator to build string and observe result 
+
+ 
+
+Figure 24. New code using StringBuffer 
+
+Release flow demonstration 
+
+10.1. Hypothesis 
+
+We hypothesis that the Figure 25 shows the branches of our current remote repository. 
+
+ 
+
+Figure 25. Branches of Remote Repository 
+
+Now we add a new topic or a new feature to our application. The next section shows us how to apply Release Flow in this hypothesis.  
+
+ 
+
+10.2. Demonstration 
+
+Step 1. Update local repository.  
+
+Issue the following command and resolve conflicts if any. 
+
+(master) $ git pull 
+
+ 
+
+Step 2. Create and switch to a new branch in the local repository. 
+
+(master) $ git checkout -b feature/demonstrate-release-flow 
+
+ 
+
+Step 3. Make modification in the local repository. 
+
+ 
+
+Step 4. Commit the change in the local repository. 
+
+(feature/demonstrate-release-flow) $ git commit –m “Add a feature for demonstration” 
+
+ 
+
+Step 5. Create a new branch in the remote repository (GitHub through GUI). 
+
+Firstly, under the “Code” tab of the top navigation bar, choose the drop-down button with the branch name (in this case “master”) on the top left. 
+
+ 
+
+Figure 26. Branch Creation in GitHub GUI (1/3) 
+
+Secondly, enter the new branch name “feature/demonstrate-release-flow” into the text field and click “Create branch: feature/demonstrate-release-flow from ‘master’”. 
+
+ 
+
+Figure 27. Branch Creation in GitHub GUI (2/3) 
+
+ 
+
+The following figure shows the result of our efforts in this step. 
+
+ 
+
+Figure 28. Branch Creation in GitHub GUI (3/3) 
+
+Step 6. Push the local branch to the remote branch 
+
+(feature/demonstrate-release-flow) $ git push origin feature/demonstrate-release-flow 
+
+ 
+
+Step 7. Create a pull request in GitHub GUI (for working in a team only) 
+
+Firstly, choose “Pull requests” tab from the top navigation bar. 
+
+ 
+
+Figure 29. Creation of a Pull Request in GitHub GUI (1/4) 
+
+Secondly, click the button “New pull request” in the top right corner of the interface. 
+
+ 
+
+Figure 30. Creation of a Pull Request in GitHub GUI (2/4) 
+
+Then, pick the target branch and current branch. Besides, at the bottom of the interface, we can see the changes between current branch and the target branch. Choose “Create pull request” to the top right. 
+
+Note: the target branch will affect the destination branch which we want our branch merge to in the next step. 
+
+ 
+
+ 
+
+Figure 31. Creation of a Pull Request in GitHub GUI (3/4) 
+
+ 
+
+Lastly, choose reviewers for the pull request. We can also change the commit message, and add comment as we desire. Choose “Create pull request”  
+
+ 
+
+ 
+
+ 
+
+The following figure shows the result of our efforts in the dashboard of GitHub. The added reviewers also can see the pull requests in their dashboard. When the changes are viewed, we can merge the branches. 
+
+ 
+
+Figure 32. Creation of a Pull Request in GitHub GUI (4/4) 
+
+Step 8. Merge the new remote branch to the master branch. 
+
+Open the pull request. 
+
+Choose “Merge pull request”. You can choose one of several merge options from the drop-down menu 
+
+ 
+
+Figure 33. Branch merging (1/3) 
+
+Lastly, change the commit message if need be. We cannot change the destination branch. Choose “Confirm merge” (as shown in Figure 33) 
+
+ 
+
+Figure 34. Branch merging (2/3) 
+
+The following figure shows the result of our efforts. The changes from the target branch have been merged to the target branch “master”. 
+
+ 
+
+Figure 35. Branch merging (3/3) 
+
+ 
