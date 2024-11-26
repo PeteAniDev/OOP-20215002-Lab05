@@ -1,4 +1,6 @@
-package aims;
+package hust.soict.globalict.aims.cart;
+
+import hust.soict.globalict.aims.disc.DigitalVideoDisc;
 
 public class Cart {
 
