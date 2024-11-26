@@ -1,0 +1,6 @@
+Java is a pass by value programming language.
+
+swap(jungleDVD, cinderellaDVD) doesn't do anything because java is pass by value.
+
+changeTitle(jungleDVD, cinderellaDVD.getTitle()) works because what java copied and passed is the handle of the object. Java did not copy and pass the whole object.
+
