@@ -1,6 +1,11 @@
 package hust.soict.globalict.aims.media;
 
+import java.util.Comparator;
+
 public class Media {
+
+	public static final Comparator<Media> COMPARE_BY_TITLE_COST = new MediaComparatorByTitleCost();
+	public static final Comparator<Media> COMPARE_BY_COST_TITLE = new MediaComparatorByCostTitle();
 
 	private static int nbMedia = 0;
 
@@ -41,6 +46,15 @@ public class Media {
 
 	public boolean isMatch(String title2) {
 		return title.toUpperCase().matches(title2.toUpperCase());
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (o instanceof Media) {
+			Media media = (Media) o;
+			return isMatch(media.getTitle());
+		}
+		return false;
 	}
 
 }

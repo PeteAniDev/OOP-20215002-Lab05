@@ -24,4 +24,13 @@ public class Track implements Playable {
 		return length;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (o instanceof Track) {
+			Track track = (Track) o;
+			return title.toUpperCase().matches(track.getTitle().toUpperCase()) && track.getLength() == length;
+		}
+		return false;
+	}
+
 }
