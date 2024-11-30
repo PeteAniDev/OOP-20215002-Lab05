@@ -13,9 +13,9 @@ public class CartTest {
 		cart.addMedia(dvd1, dvd2, dvd3);
 
 		cart.printCart();
-		cart.searchDVD(0);
-		cart.searchDVD("star war");
-		cart.searchDVD("star wars");
+		cart.searchMedia(0);
+		cart.searchMedia("star war");
+		cart.searchMedia("star wars");
 	}
 
 }
