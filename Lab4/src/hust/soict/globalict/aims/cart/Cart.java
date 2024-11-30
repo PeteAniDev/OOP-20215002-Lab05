@@ -17,7 +17,7 @@ public class Cart {
 		System.out.println("Total cost: " + totalCost() + "\n***************************************************");
 	}
 
-	public void searchDVD(int id) {
+	public void searchMedia(int id) {
 		for (Media item : itemsOrdered) {
 			if (id == item.getId()) {
 				System.out.println("Found " + item);
@@ -27,7 +27,7 @@ public class Cart {
 		System.out.println("Cannot find dvd with that id in cart.");
 	}
 
-	public void searchDVD(String title) {
+	public void searchMedia(String title) {
 		for (Media item : itemsOrdered) {
 			if (item.isMatch(title)) {
 				System.out.println("Found " + item);
