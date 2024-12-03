@@ -27,4 +27,22 @@ public class Book extends Media {
 		return authors;
 	}
 
+	@Override
+	public String toString() {
+		String book =  "" + id + ": BOOK";
+		if (title != null) {
+			book += " - " + title;
+		}
+		if (category != null) {
+			book += " - " + category;
+		}
+		for (String author : authors) {
+			book += " - " + author;
+		}
+		if (cost != Float.MIN_VALUE) {
+			book += ": " + cost + "$";
+		}
+		return book;
+	}
+
 }

@@ -1,6 +1,6 @@
 package hust.soict.globalict.aims.media;
 
-public class DigitalVideoDisc extends Disc implements Playable {
+public class DigitalVideoDisc extends Disc {
 
 	public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
 		super(title, category, director, length, cost);
@@ -26,7 +26,7 @@ public class DigitalVideoDisc extends Disc implements Playable {
 
 	@Override
 	public String toString() {
-		String dvd = "DVD";
+		String dvd =  "" + id + ": DVD";
 		if (title != null) {
 			dvd += " - " + title;
 		}
@@ -36,10 +36,10 @@ public class DigitalVideoDisc extends Disc implements Playable {
 		if (director != null) {
 			dvd += " - " + director;
 		}
-		if (length != Integer.MIN_VALUE) {
+		if (length > 0) {
 			dvd += " - " + length;
 		}
-		if (cost != Float.MIN_VALUE) {
+		if (cost > 0) {
 			dvd += ": " + cost + "$";
 		}
 		return dvd;

@@ -12,7 +12,7 @@ public class CartTest {
 		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin", "Animation", 18.99f);
 		cart.addMedia(dvd1, dvd2, dvd3);
 
-		cart.printCart();
+		cart.printCart(Cart.FILTER_NONE);
 		cart.searchMedia(0);
 		cart.searchMedia("star war");
 		cart.searchMedia("star wars");

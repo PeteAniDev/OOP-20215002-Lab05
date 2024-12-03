@@ -12,7 +12,7 @@ public class Media {
 	protected int id = nbMedia++;
 	protected String title = null;
 	protected String category = null;
-	protected float cost = Float.MIN_VALUE;
+	protected float cost = 0;
 
 	public Media(String title, String category, float cost) {
 		this.title = title;

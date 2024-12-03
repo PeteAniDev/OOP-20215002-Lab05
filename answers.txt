@@ -1,6 +1,5 @@
-Java is a pass by value programming language.
-
-swap(jungleDVD, cinderellaDVD) doesn't do anything because java is pass by value.
-
-changeTitle(jungleDVD, cinderellaDVD.getTitle()) works because what java copied and passed is the handle of the object. Java did not copy and pass the whole object.
-
+ - Media should implement the Comparable interface.
+ - Just like the compare(o1, o2) in the Comparator class, o1 being "this" while o2 is the paramenter.
+ - We can achieve that by creating a static field in the class Media which tells the compareTo() method to compare by cost or title.
+ - You can override the compareTo() method in DVD class if you're using the Comparable approach.
+If you're using the Comparator approach, you can use instanceof to test if the compared items are both DVD and compare those differently.

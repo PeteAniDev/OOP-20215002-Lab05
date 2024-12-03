@@ -1,9 +1,9 @@
 package hust.soict.globalict.aims.media;
 
-public class Disc extends Media {
+public abstract class Disc extends Media implements Playable {
 
 	protected String director = null;
-	protected int length = Integer.MIN_VALUE;
+	protected int length = 0;
 
 	public Disc(String title, String category, String director, int length, float cost) {
 		super(title, category, cost);

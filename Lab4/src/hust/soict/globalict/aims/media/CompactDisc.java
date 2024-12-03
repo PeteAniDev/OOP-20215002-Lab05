@@ -3,7 +3,7 @@ package hust.soict.globalict.aims.media;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CompactDisc extends Disc implements Playable {
+public class CompactDisc extends Disc {
 
 	private String artist;
 	private List<Track> tracks = new ArrayList<Track>();
@@ -14,10 +14,6 @@ public class CompactDisc extends Disc implements Playable {
 
 	public CompactDisc(String title, String category, String director, float cost) {
 		super(title, category, director, cost);
-	}
-
-	public CompactDisc(String title, String category, String director, int length, float cost) {
-		super(title, category, director, length, cost);
 	}
 
 	public CompactDisc(String title) {
@@ -52,6 +48,30 @@ public class CompactDisc extends Disc implements Playable {
 			length += track.getLength();
 		}
 		return length;
+	}
+
+	@Override
+	public String toString() {
+		String cd = "" + id + ": CD";
+		if (title != null) {
+			cd += " - " + title;
+		}
+		if (category != null) {
+			cd += " - " + category;
+		}
+		if (director != null) {
+			cd += " - " + director;
+		}
+		if (artist != null) {
+			cd += " - " + artist;
+		}
+		if (getLength() > 0) {
+			cd += " - " + getLength();
+		}
+		if (cost > 0) {
+			cd += ": " + cost + "$";
+		}
+		return cd;
 	}
 
 }
