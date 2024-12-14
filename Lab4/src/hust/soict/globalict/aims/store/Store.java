@@ -13,7 +13,7 @@ public class Store {
 	public static final int TYPE_CD = 0;
 	public static final int TYPE_DVD = 1;
 	public static final int TYPE_BOOK = 2;
-	
+
 	public static List<Media> itemsInStore = new ArrayList<Media>();
 
 	public static void addMedia(Media... medias) {
@@ -81,6 +81,10 @@ public class Store {
 		}
 		System.out.println("Cannot find media with that title in store.");
 		return null;
+	}
+
+	public static List<Media> getItemsInStore() {
+		return itemsInStore;
 	}
 
 }
