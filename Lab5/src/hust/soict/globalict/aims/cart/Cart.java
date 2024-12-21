@@ -100,4 +100,8 @@ public class Cart {
 		this.titleFilter = titleFilter;
 	}
 
+	public List<Media> getItemsOrdered() {
+		return itemsOrdered;
+	}
+
 }

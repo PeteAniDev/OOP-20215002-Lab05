@@ -68,6 +68,7 @@ public class StoreScreen extends JFrame {
 
 		Cart cart = new Cart();
 		new StoreScreen(cart);
+		new CartScreen(cart);
 	}
 
 	private JMenuBar createHeader() {
