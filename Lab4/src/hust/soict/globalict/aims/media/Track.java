@@ -11,9 +11,10 @@ public class Track implements Playable {
 	}
 
 	@Override
-	public void play() {
-		System.out.println("Playing DVD: " + this.getTitle());
-		System.out.println("DVD length: " + this.getLength());
+	public String play() {
+		String string = "Playing DVD: " + this.getTitle() + "\nDVD length: " + this.getLength();
+		System.out.println(string);
+		return string;
 	}
 
 	public String getTitle() {
