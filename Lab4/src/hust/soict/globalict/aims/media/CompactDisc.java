@@ -21,12 +21,12 @@ public class CompactDisc extends Disc {
 	}
 
 	@Override
-	public void play() {
-		System.out.println("Playing CD: " + this.getTitle());
-		System.out.println("CD length: " + this.getLength());
+	public String play() {
+		String string = "Playing CD: " + this.getTitle() + "\nCD length: " + this.getLength();
 		for (Track track : tracks) {
-			track.play();
+			string += "\n" + track.play();
 		}
+		return string;
 	}
 
 	public void addTrack(Track track) {

@@ -3,15 +3,18 @@ package hust.soict.globalict.aims.screen;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import hust.soict.globalict.aims.media.Media;
+import hust.soict.globalict.aims.media.Playable;
 
 public class MediaStore extends JPanel {
 
@@ -19,7 +22,7 @@ public class MediaStore extends JPanel {
 
 	private Media media;
 
-	public MediaStore(Media media) {
+	public MediaStore(Media media, StoreScreen store) {
 		this.media = media;
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -30,10 +33,24 @@ public class MediaStore extends JPanel {
 		JLabel cost = new JLabel("" + media.getCost() + " $");
 		cost.setAlignmentX(CENTER_ALIGNMENT);
 
-		JLabel container = new JLabel();
+		JPanel container = new JPanel();
 		container.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-		container.add(new JButton("Play"));
+		JButton addCart = new JButton("Add to cart");
+		addCart.addActionListener((ActionEvent e) -> {
+			store.cart.addMedia(this.media);
+			JOptionPane.showMessageDialog(null, "Media has been added to cart", "Media Added",
+					JOptionPane.INFORMATION_MESSAGE);
+		});
+		container.add(addCart);
+		if (media instanceof Playable) {
+			JButton play = new JButton("Play");
+			play.addActionListener((ActionEvent e) -> {
+				Playable playable = (Playable) this.media;
+				JOptionPane.showMessageDialog(null, playable.play(), "Media Player", JOptionPane.INFORMATION_MESSAGE);
+			});
+			container.add(play);
+		}
 
 		add(Box.createVerticalGlue());
 		add(title);

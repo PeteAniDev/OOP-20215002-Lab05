@@ -19,6 +19,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import hust.soict.globalict.aims.cart.Cart;
 import hust.soict.globalict.aims.media.Book;
 import hust.soict.globalict.aims.media.CompactDisc;
 import hust.soict.globalict.aims.media.DigitalVideoDisc;
@@ -30,7 +31,9 @@ public class StoreScreen extends JFrame {
 
 	private static final long serialVersionUID = 8359517809609633912L;
 
-	public StoreScreen() {
+	public Cart cart;
+
+	public StoreScreen(Cart cart) {
 		Container cp = getContentPane();
 		cp.setLayout(new BorderLayout());
 		cp.add(createNorth(), BorderLayout.NORTH);
@@ -40,13 +43,15 @@ public class StoreScreen extends JFrame {
 		setTitle("Store");
 		setSize(1024, 768);
 		setVisible(true);
+
+		this.cart = cart;
 	}
 
 	JPanel createNorth() {
 		JPanel north = new JPanel();
 		north.setLayout(new BoxLayout(north, BoxLayout.Y_AXIS));
-		north.add(createMenuBar());
 		north.add(createHeader());
+		north.add(createMenuBar());
 		return north;
 	}
 
@@ -61,7 +66,8 @@ public class StoreScreen extends JFrame {
 		cd.addTrack(new Track("Deepwood Gorge Defense", 24));
 		Store.addMedia(dvd1, dvd2, dvd3, book, cd);
 
-		new StoreScreen();
+		Cart cart = new Cart();
+		new StoreScreen(cart);
 	}
 
 	private JMenuBar createHeader() {
@@ -109,7 +115,7 @@ public class StoreScreen extends JFrame {
 		List<Media> mediaInStore = Store.getItemsInStore();
 		for (int i = 0; i < 9; i++) {
 			if (i < mediaInStore.size()) {
-				MediaStore cell = new MediaStore(mediaInStore.get(i));
+				MediaStore cell = new MediaStore(mediaInStore.get(i), this);
 				center.add(cell);
 			}
 		}
