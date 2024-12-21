@@ -1,10 +1,10 @@
 package hust.soict.globalict.aims.cart;
 
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 
 import hust.soict.globalict.aims.media.Media;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Cart {
 
@@ -12,7 +12,7 @@ public class Cart {
 	public static final int FILTER_BY_ID = 1;
 	public static final int FILTER_BY_TITLE = 2;
 
-	private List<Media> itemsOrdered = new ArrayList<Media>();
+	private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
 
 	private int idFilter = -1;
 	private String titleFilter = "";
@@ -100,7 +100,7 @@ public class Cart {
 		this.titleFilter = titleFilter;
 	}
 
-	public List<Media> getItemsOrdered() {
+	public ObservableList<Media> getItemsOrdered() {
 		return itemsOrdered;
 	}
 

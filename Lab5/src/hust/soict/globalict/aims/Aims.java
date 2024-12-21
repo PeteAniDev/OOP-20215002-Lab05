@@ -9,6 +9,8 @@ import hust.soict.globalict.aims.media.DigitalVideoDisc;
 import hust.soict.globalict.aims.media.Disc;
 import hust.soict.globalict.aims.media.Media;
 import hust.soict.globalict.aims.media.Track;
+import hust.soict.globalict.aims.screen.CartScreen;
+import hust.soict.globalict.aims.screen.StoreScreen;
 import hust.soict.globalict.aims.store.Store;
 
 public class Aims {
@@ -30,7 +32,15 @@ public class Aims {
 		Store.addMedia(dvd1, dvd2, dvd3, book, cd);
 
 		Cart cart = new Cart();
+		lab5(cart);
+	}
 
+	public static void lab5(Cart cart) {
+		new StoreScreen(cart);
+		new CartScreen(cart);
+	}
+
+	public static void lab4(Cart cart) {
 		do {
 			showMenu();
 			readInt();

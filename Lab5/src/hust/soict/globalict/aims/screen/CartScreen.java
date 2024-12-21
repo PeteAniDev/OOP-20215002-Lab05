@@ -24,12 +24,13 @@ public class CartScreen extends JFrame {
 		JFXPanel fxPanel = new JFXPanel();
 		add(fxPanel);
 		setTitle("Cart");
+		setSize(1024, 768);
 		setVisible(true);
 
 		Platform.runLater(() -> {
 			try {
 				FXMLLoader loader = new FXMLLoader(
-						CartScreen.class.getResource("/hust/soict/globalict/aims/screen/Cart.fxml"));
+						getClass().getResource("/hust/soict/globalict/aims/screen/Cart.fxml"));
 				CartScreenController controller = new CartScreenController(cart);
 				loader.setController(controller);
 				Parent root = loader.load();
