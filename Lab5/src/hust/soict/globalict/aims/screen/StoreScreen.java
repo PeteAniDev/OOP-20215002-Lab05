@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 import java.util.List;
 
 import javax.swing.Box;
@@ -20,11 +21,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import hust.soict.globalict.aims.cart.Cart;
-import hust.soict.globalict.aims.media.Book;
-import hust.soict.globalict.aims.media.CompactDisc;
-import hust.soict.globalict.aims.media.DigitalVideoDisc;
 import hust.soict.globalict.aims.media.Media;
-import hust.soict.globalict.aims.media.Track;
 import hust.soict.globalict.aims.store.Store;
 
 public class StoreScreen extends JFrame {
@@ -32,17 +29,20 @@ public class StoreScreen extends JFrame {
 	private static final long serialVersionUID = 8359517809609633912L;
 
 	public Cart cart;
+	public Container content;
+	public MainScreen main;
+
+	private JPanel center;
 
 	public StoreScreen(Cart cart) {
-		Container cp = getContentPane();
-		cp.setLayout(new BorderLayout());
-		cp.add(createNorth(), BorderLayout.NORTH);
-		cp.add(createCenter(), BorderLayout.CENTER);
+		content = getContentPane();
+		content.setLayout(new BorderLayout());
+		content.add(createNorth(), BorderLayout.NORTH);
+		content.add(createCenter(), BorderLayout.CENTER);
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setTitle("Store");
 		setSize(1024, 768);
-		setVisible(true);
 
 		this.cart = cart;
 	}
@@ -55,32 +55,35 @@ public class StoreScreen extends JFrame {
 		return north;
 	}
 
-	public static void main(String[] args) {
-		DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 87, 19.95f);
-		DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars", "Science Fiction", "George Lucas", 87, 24.95f);
-		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin", "Animation", 18.99f);
-		Book book = new Book("Brimestone 8.4", "Action", 199.99f);
-		CompactDisc cd = new CompactDisc("Brimestone Compilations", "Action", "Pete Karesisto", 399.99f);
-		cd.addTrack(new Track("Meltwater Sump Defense", 19));
-		cd.addTrack(new Track("Glacialfall Passage Conquer", 30));
-		cd.addTrack(new Track("Deepwood Gorge Defense", 24));
-		Store.addMedia(dvd1, dvd2, dvd3, book, cd);
-
-		Cart cart = new Cart();
-		new StoreScreen(cart);
-		new CartScreen(cart);
-	}
-
 	private JMenuBar createHeader() {
 		JMenu menu = new JMenu("Options");
 		JMenu smUpdateStore = new JMenu("Update Store");
-		smUpdateStore.add(new JMenuItem("Add Book"));
-		smUpdateStore.add(new JMenuItem("Add CD"));
-		smUpdateStore.add(new JMenuItem("Add DVD"));
+		JMenuItem addBook = new JMenuItem("Add Book");
+		addBook.addActionListener((ActionEvent e) -> {
+			main.openAddMediaScreen();
+			main.addMediaTab(0);
+		});
+		JMenuItem addCD = new JMenuItem("Add CD");
+		addCD.addActionListener((ActionEvent e) -> {
+			main.openAddMediaScreen();
+			main.addMediaTab(1);
+		});
+		JMenuItem addDVD = new JMenuItem("Add DVD");
+		addDVD.addActionListener((ActionEvent e) -> {
+			main.openAddMediaScreen();
+			main.addMediaTab(2);
+		});
+		smUpdateStore.add(addBook);
+		smUpdateStore.add(addCD);
+		smUpdateStore.add(addDVD);
 
 		menu.add(smUpdateStore);
 		menu.add(new JMenuItem("View Store"));
-		menu.add(new JMenuItem("View Cart"));
+		JMenuItem cart = new JMenuItem("View Cart");
+		cart.addActionListener((ActionEvent e) -> {
+			main.openCartScreen();
+		});
+		menu.add(cart);
 
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -99,6 +102,9 @@ public class StoreScreen extends JFrame {
 		JButton cart = new JButton("View Cart");
 		cart.setPreferredSize(new Dimension(100, 50));
 		cart.setMaximumSize(new Dimension(100, 50));
+		cart.addActionListener((ActionEvent e) -> {
+			main.openCartScreen();
+		});
 
 		header.add(Box.createRigidArea(new Dimension(10, 10)));
 		header.add(title);
@@ -110,17 +116,21 @@ public class StoreScreen extends JFrame {
 	}
 
 	private JPanel createCenter() {
-		JPanel center = new JPanel();
-		center.setLayout(new GridLayout(3, 3, 5, 5));
-
+		center = new JPanel();
 		List<Media> mediaInStore = Store.getItemsInStore();
-		for (int i = 0; i < 9; i++) {
-			if (i < mediaInStore.size()) {
-				MediaStore cell = new MediaStore(mediaInStore.get(i), this);
-				center.add(cell);
-			}
+		center.setLayout(new GridLayout((int) Math.sqrt(mediaInStore.size()) + 1,
+				(int) Math.sqrt(mediaInStore.size()) + 1, 5, 5));
+
+		for (int i = 0; i < mediaInStore.size(); i++) {
+			MediaStore cell = new MediaStore(mediaInStore.get(i), this);
+			center.add(cell);
 		}
 		return center;
+	}
+
+	public void updateCenter() {
+		content.remove(center);
+		content.add(createCenter(), BorderLayout.CENTER);
 	}
 
 }

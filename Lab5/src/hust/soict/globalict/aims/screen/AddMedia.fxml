@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar>
+              <menus>
+                <Menu mnemonicParsing="false" text="Options">
+                  <items>
+                        <Menu mnemonicParsing="false" text="Update Store">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#viewAddBook" text="Add Book" />
+                              <MenuItem mnemonicParsing="false" onAction="#viewAddCD" text="Add CD" />
+                              <MenuItem mnemonicParsing="false" onAction="#viewAddDVD" text="Add DVD" />
+                           </items>
+                        </Menu>
+                        <MenuItem mnemonicParsing="false" onAction="#viewStore" text="View Store" />
+                        <MenuItem mnemonicParsing="false" onAction="#viewCart" text="View Cart" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <Label text="ADD MEDIA TO STORE" textFill="AQUA">
+               <font>
+                  <Font size="50.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <TabPane fx:id="tab" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab text="Add Book">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addBook" style="-fx-background-color: red;" text="ADD BOOK" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Button>
+                        <Label contentDisplay="RIGHT" text="Title*" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <graphic>
+                              <TextField fx:id="bookTitle" />
+                           </graphic>
+                        </Label>
+                        <Label contentDisplay="RIGHT" layoutX="60.0" layoutY="60.0" text="Authors" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <graphic>
+                              <TextField fx:id="bookAuthors" />
+                           </graphic>
+                        </Label>
+                        <Label contentDisplay="RIGHT" layoutX="60.0" layoutY="92.0" text="Category" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <graphic>
+                              <TextField fx:id="bookCategory" />
+                           </graphic>
+                        </Label>
+                        <Label contentDisplay="RIGHT" layoutX="70.0" layoutY="102.0" text="Cost*" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="120.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <graphic>
+                              <TextField fx:id="bookCost" />
+                           </graphic>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                     </padding>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Add CD">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addCD" style="-fx-background-color: red;" text="ADD CD" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Button>
+                        <Label contentDisplay="RIGHT" text="Title*" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <graphic>
+                              <TextField fx:id="cdTitle" />
+                           </graphic>
+                        </Label>
+                        <Label contentDisplay="RIGHT" layoutX="60.0" layoutY="60.0" text="Director" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <graphic>
+                              <TextField fx:id="cdDirector" />
+                           </graphic>
+                        </Label>
+                        <Label contentDisplay="RIGHT" layoutX="60.0" layoutY="100.0" text="Artist" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <graphic>
+                              <TextField fx:id="cdArtist" />
+                           </graphic>
+                        </Label>
+                        <Label contentDisplay="RIGHT" layoutX="60.0" layoutY="92.0" text="Category" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="120.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <graphic>
+                              <TextField fx:id="cdCategory" />
+                           </graphic>
+                        </Label>
+                        <Label contentDisplay="RIGHT" layoutX="70.0" layoutY="102.0" text="Cost*" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="160.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <graphic>
+                              <TextField fx:id="cdCost" />
+                           </graphic>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                     </padding>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Add DVD">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addDVD" style="-fx-background-color: red;" text="ADD DVD" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Button>
+                        <Label contentDisplay="RIGHT" text="Title*" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <graphic>
+                              <TextField fx:id="dvdTitle" />
+                           </graphic>
+                        </Label>
+                        <Label contentDisplay="RIGHT" layoutX="60.0" layoutY="60.0" text="Director" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <graphic>
+                              <TextField fx:id="dvdDirector" />
+                           </graphic>
+                        </Label>
+                        <Label contentDisplay="RIGHT" layoutX="60.0" layoutY="100.0" text="Category" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <graphic>
+                              <TextField fx:id="dvdCategory" />
+                           </graphic>
+                        </Label>
+                        <Label contentDisplay="RIGHT" layoutX="60.0" layoutY="92.0" text="Length" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="120.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <graphic>
+                              <TextField fx:id="dvdLength" />
+                           </graphic>
+                        </Label>
+                        <Label contentDisplay="RIGHT" layoutX="70.0" layoutY="102.0" text="Cost*" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="160.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <graphic>
+                              <TextField fx:id="dvdCost" />
+                           </graphic>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                     </padding>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </center>
+</BorderPane>

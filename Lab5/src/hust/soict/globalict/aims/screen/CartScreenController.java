@@ -3,6 +3,7 @@ package hust.soict.globalict.aims.screen;
 import javax.swing.JOptionPane;
 
 import hust.soict.globalict.aims.cart.Cart;
+import hust.soict.globalict.aims.exceptions.PlayerException;
 import hust.soict.globalict.aims.media.Media;
 import hust.soict.globalict.aims.media.Playable;
 import javafx.beans.value.ChangeListener;
@@ -13,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -34,12 +36,16 @@ public class CartScreenController {
 	private Button buttonPlay;
 	@FXML
 	private Button buttonRemove;
+	@FXML
+	private TextField filter;
 
 	private Cart cart;
+	private CartScreen screen;
 
-	public CartScreenController(Cart cart) {
+	public CartScreenController(Cart cart, CartScreen screen) {
 		super();
 		this.cart = cart;
+		this.screen = screen;
 	}
 
 	@FXML
@@ -60,6 +66,15 @@ public class CartScreenController {
 				}
 			}
 		});
+
+		totalCost.textProperty().setValue("" + cart.totalCost() + " $");
+
+		filter.textProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				showFilteredMedia(newValue);
+			}
+		});
 	}
 
 	private void updateButtonBar(Media media) {
@@ -69,18 +84,76 @@ public class CartScreenController {
 
 	@FXML
 	void onPlaceOrder(ActionEvent event) {
-
+		cart.clear();
+		JOptionPane.showMessageDialog(null, "An order has been created.", "Place order",
+				JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	@FXML
 	void onPlay(ActionEvent event) {
 		Playable playable = (Playable) media.getSelectionModel().getSelectedItem();
-		JOptionPane.showMessageDialog(null, playable.play(), "Media Player", JOptionPane.INFORMATION_MESSAGE);
+		try {
+			JOptionPane.showMessageDialog(null, playable.play(), "Media Player", JOptionPane.INFORMATION_MESSAGE);
+		} catch (PlayerException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Illegal DVD Length", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	@FXML
 	void onRemove(ActionEvent event) {
 		cart.removeMedia(media.getSelectionModel().getSelectedItem());
+		updateTotal();
+	}
+
+	public void updateTotal() {
+		totalCost.textProperty().setValue("" + cart.totalCost() + " $");
+	}
+
+	private void showFilteredMedia(String filter) {
+		if (!filter.isBlank()) {
+			try {
+				cart.setIdFilter(Integer.parseInt(filter));
+			} catch (Exception e) {
+				cart.setIdFilter(-1);
+			}
+			cart.setTitleFilter(filter);
+			media.setItems(cart.getFilteredItemsOrdered());
+		} else {
+			media.setItems(cart.getItemsOrdered());
+		}
+	}
+
+	@FXML
+	void sortById(ActionEvent event) {
+		cart.setFilterMode(Cart.FILTER_BY_ID);
+	}
+
+	@FXML
+	void sortByTitle(ActionEvent event) {
+		cart.setFilterMode(Cart.FILTER_BY_TITLE);
+	}
+
+	@FXML
+	void viewStore(ActionEvent event) {
+		screen.main.openStoreScreen();
+	}
+
+	@FXML
+	void viewAddBook(ActionEvent event) {
+		screen.main.openAddMediaScreen();
+		screen.main.addMediaTab(0);
+	}
+
+	@FXML
+	void viewAddCD(ActionEvent event) {
+		screen.main.openAddMediaScreen();
+		screen.main.addMediaTab(1);
+	}
+
+	@FXML
+	void viewAddDVD(ActionEvent event) {
+		screen.main.openAddMediaScreen();
+		screen.main.addMediaTab(2);
 	}
 
 }
