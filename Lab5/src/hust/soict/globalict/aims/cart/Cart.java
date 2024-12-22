@@ -13,9 +13,11 @@ public class Cart {
 	public static final int FILTER_BY_TITLE = 2;
 
 	private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
+	private ObservableList<Media> filteredItems = FXCollections.observableArrayList();
 
 	private int idFilter = -1;
 	private String titleFilter = "";
+	private int currentFilterMode = FILTER_BY_ID;
 
 	public void printCart(int filter) {
 		if (filter == FILTER_NONE) {
@@ -68,12 +70,14 @@ public class Cart {
 		for (Media item : items) {
 			itemsOrdered.add(item);
 		}
+		getFilteredItemsOrdered();
 	}
 
 	public void removeMedia(Media... items) {
 		for (Media item : items) {
 			itemsOrdered.remove(item);
 		}
+		getFilteredItemsOrdered();
 	}
 
 	public float totalCost() {
@@ -102,6 +106,30 @@ public class Cart {
 
 	public ObservableList<Media> getItemsOrdered() {
 		return itemsOrdered;
+	}
+
+	public ObservableList<Media> getFilteredItemsOrdered() {
+		filteredItems.clear();
+		for (int i = 0; i < itemsOrdered.size(); i++) {
+			if (currentFilterMode == FILTER_BY_ID && itemsOrdered.get(i).getId() != idFilter) {
+				continue;
+			}
+			if (currentFilterMode == FILTER_BY_TITLE
+					&& !itemsOrdered.get(i).getTitle().toUpperCase().contains(titleFilter.toUpperCase())) {
+				continue;
+			}
+			filteredItems.add(itemsOrdered.get(i));
+		}
+		return filteredItems;
+	}
+
+	public void setFilterMode(int filter) {
+		this.currentFilterMode = filter;
+	}
+
+	public void clear() {
+		itemsOrdered.clear();
+		filteredItems.clear();
 	}
 
 }

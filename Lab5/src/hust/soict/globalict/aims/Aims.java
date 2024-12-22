@@ -3,13 +3,16 @@ package hust.soict.globalict.aims;
 import java.util.Scanner;
 
 import hust.soict.globalict.aims.cart.Cart;
+import hust.soict.globalict.aims.exceptions.PlayerException;
 import hust.soict.globalict.aims.media.Book;
 import hust.soict.globalict.aims.media.CompactDisc;
 import hust.soict.globalict.aims.media.DigitalVideoDisc;
 import hust.soict.globalict.aims.media.Disc;
 import hust.soict.globalict.aims.media.Media;
 import hust.soict.globalict.aims.media.Track;
+import hust.soict.globalict.aims.screen.AddMediaScreen;
 import hust.soict.globalict.aims.screen.CartScreen;
+import hust.soict.globalict.aims.screen.MainScreen;
 import hust.soict.globalict.aims.screen.StoreScreen;
 import hust.soict.globalict.aims.store.Store;
 
@@ -24,8 +27,8 @@ public class Aims {
 		DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 87, 19.95f);
 		DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars", "Science Fiction", "George Lucas", 87, 24.95f);
 		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin", "Animation", 18.99f);
-		Book book = new Book("Brimestone 8.4", "Action", 199.99f);
-		CompactDisc cd = new CompactDisc("Brimestone Compilations", "Action", "Pete Karesisto", 399.99f);
+		Book book = new Book("Brimstone 8.4", "Action", 199.99f);
+		CompactDisc cd = new CompactDisc("Brimstone Compilations", "Action", "Pete Karesisto", 399.99f);
 		cd.addTrack(new Track("Meltwater Sump Defense", 19));
 		cd.addTrack(new Track("Glacialfall Passage Conquer", 30));
 		cd.addTrack(new Track("Deepwood Gorge Defense", 24));
@@ -36,8 +39,7 @@ public class Aims {
 	}
 
 	public static void lab5(Cart cart) {
-		new StoreScreen(cart);
-		new CartScreen(cart);
+		new MainScreen(new StoreScreen(cart), new CartScreen(cart), new AddMediaScreen());
 	}
 
 	public static void lab4(Cart cart) {
@@ -64,7 +66,11 @@ public class Aims {
 									confirm();
 								} else if (intInput == 2 && isDisc) {
 									Disc disc = (Disc) item;
-									disc.play();
+									try {
+										disc.play();
+									} catch (PlayerException e) {
+										e.printStackTrace();
+									}
 									confirm();
 								}
 							} while (intInput != 0);
@@ -87,7 +93,11 @@ public class Aims {
 						Media item = Store.searchMedia(stringInput);
 						if (item != null && item instanceof Disc) {
 							Disc disc = (Disc) item;
-							disc.play();
+							try {
+								disc.play();
+							} catch (PlayerException e) {
+								e.printStackTrace();
+							}
 						} else if (item != null) {
 							System.out.println("Item is not playable.");
 						}
@@ -224,7 +234,11 @@ public class Aims {
 				Media item = cart.searchMedia(stringInput);
 				if (item != null && item instanceof Disc) {
 					Disc disc = (Disc) item;
-					disc.play();
+					try {
+						disc.play();
+					} catch (PlayerException e) {
+						e.printStackTrace();
+					}
 				} else if (item != null) {
 					System.out.println("Item is not playable.");
 				}

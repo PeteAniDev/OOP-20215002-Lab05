@@ -5,20 +5,18 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 
-import hust.soict.globalict.aims.cart.Cart;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
-public class CartScreen extends JFrame {
+public class AddMediaScreen extends JFrame {
 
-	private static final long serialVersionUID = 2365399685206168477L;
+	private static final long serialVersionUID = -2628106200218605850L;
 
-	public Cart cart;
 	public MainScreen main;
-	public CartScreenController controller;
+	public AddMediaController controller;
 
 	public JFXPanel fxPanel;
 	public FXMLLoader loader;
@@ -26,14 +24,13 @@ public class CartScreen extends JFrame {
 	public Scene scene;
 	public Container content;
 
-	public CartScreen(Cart cart) {
+	public AddMediaScreen() {
 		super();
-		this.cart = cart;
 
 		content = getContentPane();
 		fxPanel = new JFXPanel();
 		content.add(fxPanel);
-		setTitle("Cart");
+		setTitle("Add Media");
 		setSize(1024, 768);
 		run();
 	}
@@ -41,8 +38,8 @@ public class CartScreen extends JFrame {
 	public void run() {
 		Platform.runLater(() -> {
 			try {
-				loader = new FXMLLoader(getClass().getResource("/hust/soict/globalict/aims/screen/Cart.fxml"));
-				controller = new CartScreenController(cart, this);
+				loader = new FXMLLoader(getClass().getResource("/hust/soict/globalict/aims/screen/AddMedia.fxml"));
+				controller = new AddMediaController(this);
 				loader.setController(controller);
 				root = loader.load();
 				scene = new Scene(root);
